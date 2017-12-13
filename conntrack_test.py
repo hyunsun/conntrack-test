@@ -12,8 +12,8 @@ ROOT_HELPER_OPTS = [
 ]
 CONF.register_opts(ROOT_HELPER_OPTS, 'AGENT')
 
-start = time.time()
 cmd = ['conntrack', '-D', '-f', 'ipv4', '-s', '192.168.100.1', '-w', '1', '-d', '192.168.100.2']
+start = time.time()
 linux_utils.execute(list(cmd), run_as_root=True,
                     check_exit_code=True,
                     extra_ok_codes=[1])
