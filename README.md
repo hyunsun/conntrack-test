@@ -32,11 +32,9 @@ It can be resolved by decreasing filehandle limit per process to smaller value t
 
 Here's the test result with ulimit change.
 ```
-echo ""
-echo "======= container + python + default ulimit ======="
-sudo docker run -u root --rm --privileged conntrack-test python conntrack_test.py
+======= container + python + default ulimit =======
+Elapsed 0.0829100608826 seconds
 
-echo ""
-echo "======= container + python + ulimit 1024 ======="
-sudo docker run -u root --rm --privileged --ulimit nofile=1024 conntrack-test python conntrack_test.py
+======= container + python + ulimit 1024 =======
+Elapsed 0.0137021541595 seconds
 ```
