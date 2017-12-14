@@ -26,3 +26,6 @@ Elapsed 0.0128059387207 seconds
 ======= container + python =======
 Elapsed 0.104089975357 seconds
 ```
+
+# How to resolve
+It can be resolved by decreasing filehandle limit per process to smaller value than default. Root cause of poor performance with Python subprocess in Docker is described well here, https://github.com/moby/moby/issues/9876.  
