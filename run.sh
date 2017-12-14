@@ -17,8 +17,12 @@ echo "======= native + python ======="
 sudo python conntrack_test.py
 
 echo ""
-echo "======= container + python ======="
+echo "======= container + python + default ulimit ======="
 sudo docker run -u root --rm --privileged conntrack-test python conntrack_test.py
+
+echo ""
+echo "======= container + python + ulimit 1024 ======="
+sudo docker run -u root --rm --privileged --ulimit nofile=1024 conntrack-test python conntrack_test.py
 
 # run docker container interactive
 #sudo docker run --rm -it -u root --privileged conntrack-test
