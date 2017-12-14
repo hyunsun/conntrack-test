@@ -28,4 +28,15 @@ Elapsed 0.104089975357 seconds
 ```
 
 # How to resolve
-It can be resolved by decreasing filehandle limit per process to smaller value than default. Root cause of poor performance with Python subprocess in Docker is described well here, https://github.com/moby/moby/issues/9876.  
+It can be resolved by decreasing filehandle limit per process to smaller value than default. Root cause of poor performance with Python subprocess in Docker is described well here, https://github.com/moby/moby/issues/9876.
+
+Here's the test result with ulimit change.
+```
+echo ""
+echo "======= container + python + default ulimit ======="
+sudo docker run -u root --rm --privileged conntrack-test python conntrack_test.py
+
+echo ""
+echo "======= container + python + ulimit 1024 ======="
+sudo docker run -u root --rm --privileged --ulimit nofile=1024 conntrack-test python conntrack_test.py
+```
